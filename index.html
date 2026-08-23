@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy – Bit Blast: Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --accent:        #4ade80;   /* volt-green neon */
+            --accent-dim:    #22c55e;
+            --fire:          #f97316;   /* fire-orange — used for warnings */
+            --text:          #e2e8f0;
+            --muted:         #94a3b8;
+            --bg:            #0d1117;
+            --surface:       #161b22;
+            --border:        #30363d;
+            --warn-bg:       #1c1208;
+            --warn-border:   #f97316;
+            --warn-text:     #fdba74;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 1rem;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        /* Pixel dot-grid arena background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle, #ffffff0a 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header, main, footer { position: relative; z-index: 1; }
+
+        header {
+            max-width: 760px;
+            margin: 3rem auto 0;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        header h1 {
+            font-family: "Press Start 2P", monospace;
+            font-size: 1rem;
+            color: var(--accent);
+            text-shadow: 0 0 12px var(--accent), 0 0 28px var(--accent-dim);
+            margin-bottom: 0.85rem;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+
+        .header-meta {
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        .header-meta strong { color: var(--text); }
+
+        .header-tagline {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.78rem;
+            color: var(--accent-dim);
+            letter-spacing: 0.04em;
+            opacity: 0.85;
+        }
+
+        main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 2rem 0 4rem;
+        }
+
+        section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.35rem 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        h2 {
+            font-size: 0.78rem;
+            font-family: "Press Start 2P", monospace;
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent-dim);
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.6;
+        }
+
+        p { margin-bottom: 0.85rem; }
+        p:last-child { margin-bottom: 0; }
+
+        ul {
+            padding-left: 1.4rem;
+            margin-bottom: 0.85rem;
+        }
+
+        ul li { margin-bottom: 0.4rem; }
+
+        a { color: var(--accent); text-decoration: underline; }
+        a:hover { text-shadow: 0 0 6px var(--accent); }
+
+        /* ── Placeholder warning boxes ─────────────────────────────────── */
+        .placeholder {
+            background: var(--warn-bg);
+            border: 1.5px dashed var(--warn-border);
+            border-radius: 4px;
+            padding: 0.85rem 1rem;
+            margin: 0.85rem 0;
+            color: var(--warn-text);
+            font-size: 0.875rem;
+        }
+
+        .placeholder strong { display: block; margin-bottom: 0.3rem; }
+
+        footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 1.5rem 0 3rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 0.8rem; }
+            h2         { font-size: 0.68rem; }
+            section    { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Privacy Policy</h1>
+    <p class="header-meta">
+        <strong>Bit Blast: Arena</strong> &mdash; developed by Theodor A<br />
+        Last updated: <strong>April 20, 2026</strong>
+    </p>
+</header>
+
+<main>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         1. INTRODUCTION & SCOPE
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="introduction">
+        <h2>1. Introduction &amp; Scope</h2>
+        <p>
+            Welcome to <strong>Bit Blast: Arena</strong>. We take your privacy
+            seriously and want to be upfront about what information is involved when
+            you play our game.
+        </p>
+        <p>
+            This Privacy Policy explains what data may be collected when you play
+            Bit Blast: Arena on Android or iOS, how that data is used, and
+            the choices you have. It applies to all platforms and versions of the game.
+        </p>
+        <p>
+            By downloading or playing Bit Blast: Arena, you agree to the practices
+            described in this policy. If you do not agree, please do not use the game.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         2. INFORMATION COLLECTION AND USE
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="data-collection">
+        <h2>2. Information Collection and Use</h2>
+        <p>
+            Bit Blast: Arena is designed to collect as little data as possible. Here
+            is what may be involved:
+        </p>
+        <ul>
+            <li>
+                <strong>IP Address (temporary).</strong> When you use the
+                online matchmaking feature, your device&rsquo;s IP address is
+                temporarily processed to establish a peer-to-peer or relay connection.
+                This information is <em>not stored</em> after your session ends and is
+                never associated with your identity.
+            </li>
+            <li>
+                <strong>Username.</strong> You may enter a display name before a match.
+                This name is shared only with other players in the same session and is
+                not linked to any account, email address, or personal identity.
+            </li>
+            <li>
+                <strong>Basic device information.</strong> In the event of a crash, we
+                may collect your device model, operating system version, and a
+                diagnostic error log to help us fix bugs. See &ldquo;Log Data &amp;
+                Error Reporting&rdquo; below for details.
+            </li>
+        </ul>
+        <p>
+            We do <strong>not</strong> require account registration, do not collect
+            your name, email address, phone number, or location, and do not use
+            behavioural advertising or tracking.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         3. THIRD-PARTY SERVICES
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="third-party">
+        <h2>3. Third-Party Services</h2>
+        <p>
+            Some features of Bit Blast: Arena rely on third-party services. Each
+            has its own privacy policy governing the data it collects.
+        </p>
+
+        <p>
+            <strong>Google Play Services.</strong> If you download the game from
+            Google Play, Google&rsquo;s standard platform services apply. Please
+            review
+            <a href="https://policies.google.com/privacy" rel="noopener noreferrer"
+               target="_blank">Google&rsquo;s Privacy Policy</a>
+            for details on data Google may collect independently.
+        </p>
+
+        <!--    &lt;!&ndash; ⚠️ PLACEHOLDER: ANALYTICS — Remove this block if you are not using analytics &ndash;&gt;-->
+        <!--    <div class="placeholder">-->
+        <!--      <strong>⚠️ PLACEHOLDER — Analytics (remove if unused)</strong>-->
+        <!--      <strong>Analytics.</strong> We use [SERVICE NAME, e.g. Firebase Analytics /-->
+        <!--      GameAnalytics] to understand how players interact with the game. This-->
+        <!--      service may collect anonymised gameplay statistics, session length, and-->
+        <!--      device type. No personally identifiable information is collected through-->
+        <!--      this service. You can review their privacy policy at [ANALYTICS PRIVACY-->
+        <!--      POLICY URL].-->
+        <!--    </div>-->
+        <!--    &lt;!&ndash; END PLACEHOLDER: ANALYTICS &ndash;&gt;-->
+
+        <!--    &lt;!&ndash; ⚠️ PLACEHOLDER: ADS — Remove this block if you are not showing ads &ndash;&gt;-->
+        <!--    <div class="placeholder">-->
+        <!--      <strong>⚠️ PLACEHOLDER — Advertising (remove if unused)</strong>-->
+        <!--      <strong>Advertising.</strong> Bit Blast: Arena may display advertisements-->
+        <!--      provided by [AD NETWORK, e.g. Unity Ads / Google AdMob]. These networks-->
+        <!--      may use cookies or device identifiers to serve relevant ads. You can opt-->
+        <!--      out of personalised advertising through your device settings. Review their-->
+        <!--      policies: [AD NETWORK PRIVACY POLICY URL].-->
+        <!--    </div>-->
+        <!--    &lt;!&ndash; END PLACEHOLDER: ADS &ndash;&gt;-->
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         4. LOG DATA & ERROR REPORTING
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="log-data">
+        <h2>4. Log Data &amp; Error Reporting</h2>
+        <p>
+            Whenever the game encounters an error or crash, it may automatically
+            record diagnostic information (&ldquo;Log Data&rdquo;). This can include:
+        </p>
+        <ul>
+            <li>Device model and operating system version</li>
+            <li>Timestamp of the error</li>
+            <li>An error stack trace describing what went wrong</li>
+            <li>Your IP address at the time of the crash</li>
+        </ul>
+        <p>
+            This data is used solely to identify and fix bugs. It is not shared with
+            third parties except where a crash reporting service is used (see
+            Third-Party Services above).
+        </p>
+
+        <!--    &lt;!&ndash; ⚠️ PLACEHOLDER: CRASH REPORTING — Remove if not using a crash service &ndash;&gt;-->
+        <!--    <div class="placeholder">-->
+        <!--      <strong>⚠️ PLACEHOLDER — Crash Reporting Service (remove if unused)</strong>-->
+        <!--      Crash reports may be transmitted to [SERVICE, e.g. Firebase Crashlytics /-->
+        <!--      Sentry]. Review their privacy policy at [CRASH SERVICE PRIVACY POLICY URL].-->
+        <!--    </div>-->
+        <!--    &lt;!&ndash; END PLACEHOLDER: CRASH REPORTING &ndash;&gt;-->
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         5. CHILDREN'S PRIVACY
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="children">
+        <h2>5. Children&rsquo;s Privacy</h2>
+        <p>
+            Bit Blast: Arena is a game for all ages and has <strong>no minimum age
+            requirement</strong>. We have designed the game with this in mind: it
+            does not require account creation, does not ask for a real name or
+            contact details, and does not display behavioural advertising.
+        </p>
+        <p>
+            In compliance with the U.S. Children&rsquo;s Online Privacy Protection
+            Act (COPPA) and equivalent laws (e.g. GDPR-K in the EU), we do
+            <strong>not</strong> knowingly collect personal information from any
+            player. The only data processed during gameplay is:
+        </p>
+        <ul>
+            <li>A temporary IP address, held in memory for matchmaking only and
+                discarded when the session ends</li>
+            <li>A player-chosen display name, shared with session participants only
+                and never stored</li>
+            <li>Basic device diagnostics in the event of a crash (see Log Data
+                &amp; Error Reporting)</li>
+        </ul>
+        <p>
+            Because we do not collect persistent personal information, no parental
+            consent mechanism is required for gameplay. If you are a parent or
+            guardian and have concerns about your child&rsquo;s use of the game,
+            please contact us at the address in the &ldquo;Contact
+            Information&rdquo; section and we will respond promptly.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         6. DATA RETENTION AND DELETION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="retention">
+        <h2>6. Data Retention and Deletion</h2>
+        <p>
+            We retain data only as long as necessary:
+        </p>
+        <ul>
+            <li>
+                <strong>Session IP addresses</strong> are held in memory only for the
+                duration of an active matchmaking session and are discarded when the
+                session ends.
+            </li>
+            <li>
+                <strong>Crash / log data</strong> is retained for up to
+                <strong>90 days</strong>, after which it is permanently purged.
+            </li>
+        </ul>
+        <p>
+            <strong>Requesting data deletion.</strong> If you would like to request
+            the deletion of any data that may have been associated with your device,
+            please email us at
+            <a href="mailto:lakesidetheory@gmail.com">lakesidetheory@gmail.com</a>
+            with the subject line <em>&ldquo;Data Deletion Request&rdquo;</em>.
+            Include your device type and approximate date of play so we can locate
+            any relevant records. We will process your request within 30 days.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         7. CHANGES TO THIS POLICY
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="changes">
+        <h2>7. Changes to This Policy</h2>
+        <p>
+            We may update this Privacy Policy from time to time. When we do, we will
+            revise the &ldquo;Last updated&rdquo; date at the top of this page. For
+            significant changes, we will also include a note in the game&rsquo;s
+            update release notes on the app store.
+        </p>
+        <p>
+            We encourage you to review this page periodically. Continued use of
+            Bit Blast: Arena after any changes constitutes your acceptance of the
+            revised policy.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         8. CONTACT INFORMATION
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="contact">
+        <h2>8. Contact Information</h2>
+        <p>
+            If you have any questions or concerns about this Privacy Policy or the
+            way your data is handled, please get in touch:
+        </p>
+        <p>
+            <strong>Theodor A</strong><br />
+            Email:
+            <a href="mailto:lakesidetheory@gmail.com">lakesidetheory@gmail.com</a>
+        </p>
+        <p>
+            We aim to respond to all privacy-related enquiries within
+            <strong>5 business days</strong>.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Theodor A &mdash; Bit Blast: Arena. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
