@@ -4,162 +4,400 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy – Bit Blast: Arena</title>
+    <meta name="description" content="Privacy policy for Bit Blast: Arena — what data the game collects, why, and how to turn it off." />
+    <meta name="color-scheme" content="dark" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --accent:        #4ade80;   /* volt-green neon */
-            --accent-dim:    #22c55e;
-            --fire:          #f97316;   /* fire-orange — used for warnings */
-            --text:          #e2e8f0;
-            --muted:         #94a3b8;
-            --bg:            #0d1117;
-            --surface:       #161b22;
-            --border:        #30363d;
-            --warn-bg:       #1c1208;
-            --warn-border:   #f97316;
-            --warn-text:     #fdba74;
+            /* Arena palette — sampled from the game's own screens */
+            --bg-deep:     #04081a;
+            --bg-mid:      #081536;
+            --bg-glow:     #0f2f6b;
+            --surface:     rgba(11, 24, 52, 0.78);
+            --surface-2:   rgba(16, 33, 68, 0.66);
+            --border:      rgba(86, 142, 220, 0.26);
+            --border-lit:  rgba(110, 175, 255, 0.55);
+
+            --title:       #ffd9c4;   /* the menu's warm pixel title */
+            --accent:      #4ea8ff;   /* JUMP IN blue */
+            --accent-soft: #8ecbff;
+            --text:        #ccd9f0;
+            --text-strong: #f2f7ff;
+            --muted:       #8296bb;
+
+            /* Element colours, straight from LobbyTheme.ELEMENT_COLORS */
+            --fire:  #ff6626;
+            --ice:   #4dccff;
+            --volt:  #ffff33;
+            --toxin: #66ff4d;
+            --umbra: #9933e6;
+
+            --grid-fine:  rgba(96, 156, 246, 0.055);
+            --grid-major: rgba(96, 156, 246, 0.10);
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Helvetica, Arial, sans-serif;
-            background: var(--bg);
+                         Helvetica, Arial, sans-serif;
+            background: var(--bg-deep);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.75;
             font-size: 1rem;
             padding: 0 1rem;
             position: relative;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Pixel dot-grid arena background */
+        /* ── Arena floor: fine grid over a major grid, lit from the centre ── */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(circle, #ffffff0a 1px, transparent 1px);
-            background-size: 28px 28px;
-            pointer-events: none;
             z-index: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(var(--grid-major) 1px, transparent 1px) 0 0 / 128px 128px,
+                linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) 0 0 / 128px 128px,
+                linear-gradient(var(--grid-fine) 1px, transparent 1px) 0 0 / 32px 32px,
+                linear-gradient(90deg, var(--grid-fine) 1px, transparent 1px) 0 0 / 32px 32px;
+            mask-image: radial-gradient(ellipse 90% 70% at 50% 35%, #000 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 35%, #000 30%, transparent 100%);
+        }
+
+        /* Edge glow — the blue rim light around the arena */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 120% 80% at 50% -10%, var(--bg-glow) 0%, transparent 55%),
+                radial-gradient(ellipse 100% 60% at 50% 110%, #0a2350 0%, transparent 60%),
+                linear-gradient(180deg, transparent 0%, var(--bg-mid) 40%, var(--bg-deep) 100%);
+            opacity: 0.55;
         }
 
         header, main, footer { position: relative; z-index: 1; }
 
+        /* ── Header ───────────────────────────────────────────────────── */
         header {
-            max-width: 760px;
-            margin: 3rem auto 0;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--accent);
+            max-width: 820px;
+            margin: 3.5rem auto 0;
+            padding-bottom: 1.75rem;
+            border-bottom: 2px solid var(--border-lit);
+        }
+
+        .eyebrow {
+            font-family: "Silkscreen", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+            text-shadow: 0 0 14px rgba(78, 168, 255, 0.7);
+            margin-bottom: 1rem;
+            display: block;
         }
 
         header h1 {
-            font-family: "Press Start 2P", monospace;
-            font-size: 1rem;
-            color: var(--accent);
-            text-shadow: 0 0 12px var(--accent), 0 0 28px var(--accent-dim);
-            margin-bottom: 0.85rem;
-            line-height: 1.6;
-            letter-spacing: 0.02em;
+            font-family: "Silkscreen", monospace;
+            font-weight: 700;
+            font-size: clamp(1.35rem, 5.5vw, 2.1rem);
+            color: var(--title);
+            text-shadow: 0 0 18px rgba(255, 190, 150, 0.35),
+                         0 0 44px rgba(255, 140, 80, 0.18);
+            line-height: 1.35;
+            letter-spacing: 0.03em;
+            margin-bottom: 1rem;
         }
 
-        .header-meta {
-            color: var(--muted);
-            font-size: 0.875rem;
+        .header-meta { color: var(--muted); font-size: 0.9rem; line-height: 1.9; }
+        .header-meta strong { color: var(--text-strong); font-weight: 600; }
+
+        /* Element strip — the five elements as a thin rule under the header */
+        .element-strip {
+            display: flex;
+            height: 3px;
+            margin-top: 1.4rem;
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0.9;
         }
+        .element-strip span { flex: 1; }
+        .element-strip span:nth-child(1) { background: var(--fire);  box-shadow: 0 0 10px var(--fire); }
+        .element-strip span:nth-child(2) { background: var(--ice);   box-shadow: 0 0 10px var(--ice); }
+        .element-strip span:nth-child(3) { background: var(--volt);  box-shadow: 0 0 10px var(--volt); }
+        .element-strip span:nth-child(4) { background: var(--toxin); box-shadow: 0 0 10px var(--toxin); }
+        .element-strip span:nth-child(5) { background: var(--umbra); box-shadow: 0 0 10px var(--umbra); }
 
-        .header-meta strong { color: var(--text); }
+        main { max-width: 820px; margin: 0 auto; padding: 2.25rem 0 4rem; }
 
-        .header-tagline {
-            display: inline-block;
-            margin-top: 0.6rem;
-            font-size: 0.78rem;
-            color: var(--accent-dim);
-            letter-spacing: 0.04em;
-            opacity: 0.85;
-        }
-
-        main {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 2rem 0 4rem;
-        }
-
+        /* ── Sections ─────────────────────────────────────────────────── */
         section {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 1.35rem 1.5rem;
-            margin-bottom: 1.25rem;
+            border-radius: 8px;
+            padding: 1.6rem 1.75rem;
+            margin-bottom: 1.4rem;
+            box-shadow: inset 0 1px 0 rgba(160, 205, 255, 0.06),
+                        0 8px 28px rgba(0, 0, 0, 0.35);
         }
 
         h2 {
-            font-size: 0.78rem;
-            font-family: "Press Start 2P", monospace;
+            font-family: "Silkscreen", monospace;
+            font-weight: 700;
+            font-size: 0.82rem;
             color: var(--accent);
-            text-shadow: 0 0 8px var(--accent-dim);
-            margin-bottom: 0.9rem;
-            padding-bottom: 0.5rem;
+            text-shadow: 0 0 12px rgba(78, 168, 255, 0.45);
+            margin-bottom: 1.1rem;
+            padding-bottom: 0.7rem;
             border-bottom: 1px solid var(--border);
+            line-height: 1.7;
+            letter-spacing: 0.04em;
+        }
+
+        h3 {
+            font-family: "Silkscreen", monospace;
+            font-weight: 400;
+            font-size: 0.72rem;
+            color: var(--title);
+            letter-spacing: 0.05em;
+            margin: 1.6rem 0 0.7rem;
+            line-height: 1.7;
+        }
+        h3:first-of-type { margin-top: 0.4rem; }
+
+        p { margin-bottom: 0.95rem; }
+        p:last-child { margin-bottom: 0; }
+
+        ul { padding-left: 1.3rem; margin-bottom: 0.95rem; }
+        ul li { margin-bottom: 0.55rem; }
+        ul li::marker { color: var(--accent); }
+        ul li:last-child { margin-bottom: 0; }
+
+        strong { color: var(--text-strong); font-weight: 600; }
+        em { color: var(--accent-soft); font-style: normal; }
+
+        a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(78,168,255,0.4); }
+        a:hover { color: var(--accent-soft); border-bottom-color: var(--accent-soft);
+                  text-shadow: 0 0 10px rgba(78, 168, 255, 0.6); }
+
+        code {
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 0.86em;
+            background: rgba(78, 168, 255, 0.10);
+            border: 1px solid rgba(78, 168, 255, 0.2);
+            border-radius: 3px;
+            padding: 0.12em 0.4em;
+            color: var(--accent-soft);
+        }
+
+        /* ── At-a-glance cards ────────────────────────────────────────── */
+        .glance {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.85rem;
+            margin-top: 0.4rem;
+        }
+
+        .glance-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--card-accent, var(--accent));
+            border-radius: 6px;
+            padding: 0.9rem 1rem;
+        }
+
+        .glance-card .k {
+            display: block;
+            font-family: "Silkscreen", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            color: var(--card-accent, var(--accent));
+            margin-bottom: 0.5rem;
             line-height: 1.6;
         }
 
-        p { margin-bottom: 0.85rem; }
-        p:last-child { margin-bottom: 0; }
+        .glance-card .v { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
 
-        ul {
+        .c-fire  { --card-accent: var(--fire); }
+        .c-ice   { --card-accent: var(--ice); }
+        .c-toxin { --card-accent: var(--toxin); }
+        .c-umbra { --card-accent: var(--umbra); }
+
+        /* ── Callout ──────────────────────────────────────────────────── */
+        .callout {
+            background: linear-gradient(180deg, rgba(78,168,255,0.10), rgba(78,168,255,0.04));
+            border: 1px solid rgba(78, 168, 255, 0.34);
+            border-radius: 6px;
+            padding: 1rem 1.15rem;
+            margin: 1.1rem 0;
+            font-size: 0.93rem;
+        }
+        .callout .tag {
+            display: block;
+            font-family: "Silkscreen", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── Data-safety table ────────────────────────────────────────── */
+        .table-scroll { overflow-x: auto; margin: 0.6rem 0 0.2rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 540px;
+        }
+
+        thead th {
+            font-family: "Silkscreen", monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.07em;
+            color: var(--accent);
+            text-align: left;
+            padding: 0.6rem 0.7rem;
+            border-bottom: 1px solid var(--border-lit);
+            line-height: 1.7;
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 0.65rem 0.7rem;
+            border-bottom: 1px solid rgba(86, 142, 220, 0.14);
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: rgba(78, 168, 255, 0.05); }
+        tbody td:first-child { color: var(--text-strong); font-weight: 600; }
+        .sub { color: var(--muted); font-weight: 400; }
+
+        .pill {
+            display: inline-block;
+            font-family: "Silkscreen", monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.05em;
+            padding: 0.25em 0.6em;
+            border-radius: 3px;
+            line-height: 1.6;
+            white-space: nowrap;
+        }
+        .pill-yes { background: rgba(102,255,77,0.13); border: 1px solid rgba(102,255,77,0.4); color: #8fff7d; }
+        .pill-no  { background: rgba(130,150,187,0.12); border: 1px solid rgba(130,150,187,0.35); color: var(--muted); }
+
+        /* ── Not-collected list ───────────────────────────────────────── */
+        .never {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 0.45rem 1rem;
+            margin-top: 0.5rem;
+            list-style: none;
+            padding-left: 0;
+        }
+        .never li {
+            font-size: 0.88rem;
+            color: var(--muted);
             padding-left: 1.4rem;
-            margin-bottom: 0.85rem;
+            position: relative;
+            margin-bottom: 0;
+        }
+        .never li::before {
+            content: '\00d7';
+            position: absolute;
+            left: 0.35rem;
+            color: var(--fire);
+            font-weight: 700;
         }
 
-        ul li { margin-bottom: 0.4rem; }
-
-        a { color: var(--accent); text-decoration: underline; }
-        a:hover { text-shadow: 0 0 6px var(--accent); }
-
-        /* ── Placeholder warning boxes ─────────────────────────────────── */
-        .placeholder {
-            background: var(--warn-bg);
-            border: 1.5px dashed var(--warn-border);
-            border-radius: 4px;
-            padding: 0.85rem 1rem;
-            margin: 0.85rem 0;
-            color: var(--warn-text);
-            font-size: 0.875rem;
-        }
-
-        .placeholder strong { display: block; margin-bottom: 0.3rem; }
+        .note { margin-top: 1.1rem; }
 
         footer {
-            max-width: 760px;
+            max-width: 820px;
             margin: 0 auto;
-            padding: 1.5rem 0 3rem;
+            padding: 1.75rem 0 3.5rem;
             border-top: 1px solid var(--border);
             color: var(--muted);
             font-size: 0.8rem;
             text-align: center;
+            line-height: 1.9;
+        }
+        footer .sig {
+            font-family: "Silkscreen", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            color: rgba(130, 150, 187, 0.7);
+            display: block;
+            margin-top: 0.5rem;
         }
 
-        @media (max-width: 480px) {
-            header h1 { font-size: 0.8rem; }
-            h2         { font-size: 0.68rem; }
-            section    { padding: 1rem; }
+        @media (max-width: 520px) {
+            body { padding: 0 0.75rem; line-height: 1.7; }
+            header { margin-top: 2.25rem; }
+            section { padding: 1.15rem 1.1rem; }
+            h2 { font-size: 0.7rem; }
+            h3 { font-size: 0.66rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
 <body>
 
 <header>
+    <span class="eyebrow">BIT BLAST: ARENA</span>
     <h1>Privacy Policy</h1>
     <p class="header-meta">
-        <strong>Bit Blast: Arena</strong> &mdash; developed by Theodor A<br />
-        Last updated: <strong>April 20, 2026</strong>
+        Developed by <strong>Theodor A</strong><br />
+        Last updated: <strong>23 August 2026</strong>
     </p>
+    <div class="element-strip" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
 </header>
 
 <main>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         AT A GLANCE
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="glance">
+        <h2>At a Glance</h2>
+        <div class="glance">
+            <div class="glance-card c-ice">
+                <span class="k">NO ACCOUNTS</span>
+                <span class="v">No sign-up, no email, no password. Nothing you do in the
+                    game is tied to a real identity.</span>
+            </div>
+            <div class="glance-card c-toxin">
+                <span class="k">NO ADS</span>
+                <span class="v">No advertising, no ad networks, no behavioural profiling,
+                    and your advertising ID is never read or sent.</span>
+            </div>
+            <div class="glance-card c-fire">
+                <span class="k">ANALYTICS: OPT-OUT</span>
+                <span class="v">Anonymous gameplay statistics are on by default. One tap in
+                    <em>Settings</em> turns them off for good.</span>
+            </div>
+            <div class="glance-card c-umbra">
+                <span class="k">NOTHING IS SOLD</span>
+                <span class="v">We never sell, rent, or trade any data, and we share nothing
+                    for anyone else&rsquo;s marketing.</span>
+            </div>
+        </div>
+    </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
          1. INTRODUCTION & SCOPE
@@ -167,238 +405,446 @@
     <section id="introduction">
         <h2>1. Introduction &amp; Scope</h2>
         <p>
-            Welcome to <strong>Bit Blast: Arena</strong>. We take your privacy
-            seriously and want to be upfront about what information is involved when
-            you play our game.
+            <strong>Bit Blast: Arena</strong> is a fast-paced pixel-art multiplayer
+            shooter. This policy explains exactly what information leaves your device
+            when you play, why it leaves, who receives it, and how to stop it.
         </p>
         <p>
-            This Privacy Policy explains what data may be collected when you play
-            Bit Blast: Arena on Android or iOS, how that data is used, and
-            the choices you have. It applies to all platforms and versions of the game.
+            It applies to every platform and version of the game, including builds
+            distributed through Google Play. It covers the game itself and the
+            matchmaking relay we operate. It does not cover Google Play, your device
+            manufacturer, or your network provider, each of which has its own policy.
         </p>
         <p>
-            By downloading or playing Bit Blast: Arena, you agree to the practices
-            described in this policy. If you do not agree, please do not use the game.
+            By downloading or playing Bit Blast: Arena you agree to the practices
+            described here. If you do not agree, please do not use the game.
         </p>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         2. INFORMATION COLLECTION AND USE
+         2. GAMEPLAY ANALYTICS
          ═══════════════════════════════════════════════════════════════ -->
-    <section id="data-collection">
-        <h2>2. Information Collection and Use</h2>
+    <section id="analytics">
+        <h2>2. Gameplay Analytics</h2>
         <p>
-            Bit Blast: Arena is designed to collect as little data as possible. Here
-            is what may be involved:
+            The game sends anonymous gameplay statistics to <strong>PostHog</strong>, a
+            product-analytics service, so we can see which weapons are overpowered, which
+            devices drop frames, and where players get stuck. This is the only routine
+            data collection in the game.
+        </p>
+
+        <div class="callout">
+            <span class="tag">HOW TO TURN IT OFF</span>
+            Open the game, tap <strong>SETTINGS</strong> on the main menu, and tap the
+            <strong>ANALYTICS</strong> button until it reads <strong>ANALYTICS: OFF</strong>.
+            Collection stops immediately, any events still waiting on your device are
+            discarded, and the choice is remembered on that device from then on. The game
+            plays exactly the same either way.
+        </div>
+
+        <h3>What is in an analytics event</h3>
+        <ul>
+            <li>
+                <strong>A random identifier.</strong> The first time you launch the game it
+                generates 16 random bytes and saves them on your device. That value is
+                attached to your events so we can tell one player&rsquo;s rounds apart from
+                another&rsquo;s. It is not derived from anything about you or your hardware,
+                and it is not your device&rsquo;s advertising ID. It is not connected to any
+                account, name, email, or contact detail, and we hold nothing that would let
+                us connect it to a real person. Uninstalling the game deletes it.
+            </li>
+            <li>
+                <strong>Round summaries.</strong> Game mode, transport (offline, local
+                Wi-Fi, or internet), how long the round lasted, whether you won or lost,
+                remaining health, and counts of in-game events such as overloads and
+                elemental reactions.
+            </li>
+            <li>
+                <strong>Weapon and ability usage.</strong> Which weapons and abilities you
+                used, shots fired, hits landed, damage dealt, and critical-hit types.
+            </li>
+            <li>
+                <strong>In-game economy.</strong> Which weapons, abilities, and items you
+                bought with in-game coins, and your coin balance afterwards.
+                <em>All currency in Bit Blast: Arena is in-game only</em> &mdash; the game
+                contains no real-money purchases and never handles payment information.
+            </li>
+            <li>
+                <strong>Menu navigation.</strong> Which screen a button was pressed on and
+                the button&rsquo;s fixed label (for example <code>JUMP IN</code>). Text you
+                type yourself, such as your display name or a room code, is never included.
+            </li>
+            <li>
+                <strong>Performance.</strong> Median and 5th-percentile frame rate for a
+                round, and how many seconds were sampled.
+            </li>
+            <li>
+                <strong>Device context.</strong> Platform (Android or iOS), device model,
+                screen resolution, language, and the game&rsquo;s version number. This is
+                hardware-class information used to reproduce layout and performance bugs;
+                it is not detailed enough to identify a device.
+            </li>
+            <li>
+                <strong>Approximate location &mdash; country only.</strong> PostHog uses the
+                IP address your events arrive from to work out which <em>country</em> they came
+                from, and then discards the address instead of storing it. We keep the country
+                and continent and deliberately nothing finer: no city, no region, no postal
+                code, and no coordinates. We use it only to understand where our players are.
+                We never receive or request precise or GPS location, and the game holds no
+                location permission.
+            </li>
+        </ul>
+
+        <h3>How it is sent and stored</h3>
+        <ul>
+            <li>Events are batched on your device and sent over HTTPS roughly every 30 seconds.</li>
+            <li>They go to PostHog&rsquo;s <strong>European Union</strong> infrastructure
+                (<code>eu.i.posthog.com</code>), where they are stored.</li>
+            <li>PostHog processes this data <em>on our behalf and under our instructions</em>.
+                They do not use it for their own purposes, and we do not sell or share it
+                with anyone else. See
+                <a href="https://posthog.com/privacy" rel="noopener noreferrer" target="_blank">PostHog&rsquo;s privacy policy</a>.</li>
+            <!-- ⚠ BEFORE PUSHING: set the PostHog project's data retention to 12 months
+                 (or less), or this sentence is a promise nothing enforces. See
+                 docs/play-data-safety.md in the game repo. -->
+            <li>Analytics events are retained for no more than <strong>12 months</strong>,
+                after which they are deleted.</li>
+            <li>Builds we run ourselves during development are tagged as internal and
+                excluded from our analysis.</li>
+        </ul>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         3. MULTIPLAYER & CONNECTION DATA
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="multiplayer">
+        <h2>3. Multiplayer &amp; Connection Data</h2>
+
+        <h3>Your display name</h3>
+        <p>
+            Before a match you may enter a display name. If you do not, the game invents
+            one such as <code>Player417</code>. This name is saved <strong>on your device
+            only</strong> so you do not have to retype it, and it is sent to the other
+            players in your match so they can see who they are fighting. We do not store it
+            on any server, it is never attached to your analytics data, and it is not
+            linked to any account or real identity. Please do not use your real name.
+        </p>
+
+        <h3>Your IP address</h3>
+        <p>
+            Connecting to another player necessarily reveals a network address, as it does
+            in any online game:
         </p>
         <ul>
             <li>
-                <strong>IP Address (temporary).</strong> When you use the
-                online matchmaking feature, your device&rsquo;s IP address is
-                temporarily processed to establish a peer-to-peer or relay connection.
-                This information is <em>not stored</em> after your session ends and is
-                never associated with your identity.
+                <strong>Local Wi-Fi play.</strong> Devices connect directly to each other on
+                your own network and nothing reaches us at all. Because this traffic stays
+                on your local network, it is not encrypted.
             </li>
             <li>
-                <strong>Username.</strong> You may enter a display name before a match.
-                This name is shared only with other players in the same session and is
-                not linked to any account, email address, or personal identity.
+                <strong>Internet play.</strong> Your device opens an encrypted connection
+                (<code>WSS</code>) to our relay server, which forwards game packets between
+                the players in a room. The relay holds your connection&rsquo;s network
+                address in memory for the length of the session purely to route packets. It
+                writes nothing to disk, keeps no database, does not read the contents of the
+                packets it forwards, and discards the room entirely once the last player
+                leaves. The relay runs on Deno Deploy.
             </li>
             <li>
-                <strong>Basic device information.</strong> In the event of a crash, we
-                may collect your device model, operating system version, and a
-                diagnostic error log to help us fix bugs. See &ldquo;Log Data &amp;
-                Error Reporting&rdquo; below for details.
+                <strong>Analytics.</strong> Separately from matchmaking, your analytics events
+                reach PostHog from an IP address. It is used once, at the moment the event
+                arrives, to determine your country, and is then <strong>discarded rather than
+                stored</strong> &mdash; it is not kept against your events or your random
+                identifier. Turning analytics off stops this.
             </li>
         </ul>
-        <p>
-            We do <strong>not</strong> require account registration, do not collect
-            your name, email address, phone number, or location, and do not use
-            behavioural advertising or tracking.
-        </p>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         3. THIRD-PARTY SERVICES
+         4. ON-DEVICE DATA
          ═══════════════════════════════════════════════════════════════ -->
-    <section id="third-party">
-        <h2>3. Third-Party Services</h2>
+    <section id="on-device">
+        <h2>4. Data Kept Only on Your Device</h2>
         <p>
-            Some features of Bit Blast: Arena rely on third-party services. Each
-            has its own privacy policy governing the data it collects.
-        </p>
-
-        <p>
-            <strong>Google Play Services.</strong> If you download the game from
-            Google Play, Google&rsquo;s standard platform services apply. Please
-            review
-            <a href="https://policies.google.com/privacy" rel="noopener noreferrer"
-               target="_blank">Google&rsquo;s Privacy Policy</a>
-            for details on data Google may collect independently.
-        </p>
-
-        <!--    &lt;!&ndash; ⚠️ PLACEHOLDER: ANALYTICS — Remove this block if you are not using analytics &ndash;&gt;-->
-        <!--    <div class="placeholder">-->
-        <!--      <strong>⚠️ PLACEHOLDER — Analytics (remove if unused)</strong>-->
-        <!--      <strong>Analytics.</strong> We use [SERVICE NAME, e.g. Firebase Analytics /-->
-        <!--      GameAnalytics] to understand how players interact with the game. This-->
-        <!--      service may collect anonymised gameplay statistics, session length, and-->
-        <!--      device type. No personally identifiable information is collected through-->
-        <!--      this service. You can review their privacy policy at [ANALYTICS PRIVACY-->
-        <!--      POLICY URL].-->
-        <!--    </div>-->
-        <!--    &lt;!&ndash; END PLACEHOLDER: ANALYTICS &ndash;&gt;-->
-
-        <!--    &lt;!&ndash; ⚠️ PLACEHOLDER: ADS — Remove this block if you are not showing ads &ndash;&gt;-->
-        <!--    <div class="placeholder">-->
-        <!--      <strong>⚠️ PLACEHOLDER — Advertising (remove if unused)</strong>-->
-        <!--      <strong>Advertising.</strong> Bit Blast: Arena may display advertisements-->
-        <!--      provided by [AD NETWORK, e.g. Unity Ads / Google AdMob]. These networks-->
-        <!--      may use cookies or device identifiers to serve relevant ads. You can opt-->
-        <!--      out of personalised advertising through your device settings. Review their-->
-        <!--      policies: [AD NETWORK PRIVACY POLICY URL].-->
-        <!--    </div>-->
-        <!--    &lt;!&ndash; END PLACEHOLDER: ADS &ndash;&gt;-->
-
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         4. LOG DATA & ERROR REPORTING
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="log-data">
-        <h2>4. Log Data &amp; Error Reporting</h2>
-        <p>
-            Whenever the game encounters an error or crash, it may automatically
-            record diagnostic information (&ldquo;Log Data&rdquo;). This can include:
+            Some things are saved locally so the game remembers them between sessions. None
+            of it is uploaded, and all of it is removed when you uninstall the game:
         </p>
         <ul>
-            <li>Device model and operating system version</li>
-            <li>Timestamp of the error</li>
-            <li>An error stack trace describing what went wrong</li>
-            <li>Your IP address at the time of the crash</li>
+            <li>Your display name and chosen player colour</li>
+            <li>Your analytics on/off preference and the random analytics identifier</li>
+            <li>Your loadout, owned weapons, abilities, items, and coin balance</li>
         </ul>
-        <p>
-            This data is used solely to identify and fix bugs. It is not shared with
-            third parties except where a crash reporting service is used (see
-            Third-Party Services above).
-        </p>
-
-        <!--    &lt;!&ndash; ⚠️ PLACEHOLDER: CRASH REPORTING — Remove if not using a crash service &ndash;&gt;-->
-        <!--    <div class="placeholder">-->
-        <!--      <strong>⚠️ PLACEHOLDER — Crash Reporting Service (remove if unused)</strong>-->
-        <!--      Crash reports may be transmitted to [SERVICE, e.g. Firebase Crashlytics /-->
-        <!--      Sentry]. Review their privacy policy at [CRASH SERVICE PRIVACY POLICY URL].-->
-        <!--    </div>-->
-        <!--    &lt;!&ndash; END PLACEHOLDER: CRASH REPORTING &ndash;&gt;-->
-
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         5. CHILDREN'S PRIVACY
+         5. WHAT WE NEVER COLLECT
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="never">
+        <h2>5. What We Never Collect</h2>
+        <p>The game does not collect, request, or transmit any of the following:</p>
+        <ul class="never">
+            <li>Real name</li>
+            <li>Email address</li>
+            <li>Phone number</li>
+            <li>Postal address</li>
+            <li>Date of birth or age</li>
+            <li>Payment or card details</li>
+            <li>Precise or GPS location</li>
+            <li>Contacts</li>
+            <li>Calendar</li>
+            <li>Photos or videos</li>
+            <li>Microphone or audio</li>
+            <li>Files or documents</li>
+            <li>SMS or messages</li>
+            <li>Web browsing history</li>
+            <li>Installed apps</li>
+            <li>Advertising ID</li>
+            <li>Health or fitness data</li>
+            <li>Crash logs or stack traces</li>
+        </ul>
+        <p class="note">
+            The game contains no chat feature, no user-generated content, no advertising,
+            and no third-party crash-reporting service. Its only Android permission is
+            <code>INTERNET</code>.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         6. GOOGLE PLAY DATA SAFETY
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="data-safety">
+        <h2>6. Google Play Data Safety Summary</h2>
+        <p>
+            This mirrors the Data safety declaration on our Google Play store listing. No
+            data type below is <em>shared</em> with third parties for their own purposes;
+            PostHog processes analytics data on our behalf only.
+        </p>
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data type</th>
+                        <th>Collected</th>
+                        <th>Purpose</th>
+                        <th>Optional</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Device or other IDs</td>
+                        <td><span class="pill pill-yes">YES</span></td>
+                        <td>Analytics &mdash; the random on-device identifier</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>App activity<br /><span class="sub">App interactions</span></td>
+                        <td><span class="pill pill-yes">YES</span></td>
+                        <td>Analytics &mdash; rounds, weapons, menus, in-game purchases</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>App info and performance<br /><span class="sub">Diagnostics</span></td>
+                        <td><span class="pill pill-yes">YES</span></td>
+                        <td>Analytics &mdash; frame rate, device model, OS, app version</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Location<br /><span class="sub">Approximate location</span></td>
+                        <td><span class="pill pill-yes">YES</span></td>
+                        <td>Analytics &mdash; country only; the IP it is derived from is
+                            discarded, not stored</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Personal info<br /><span class="sub">Name (display name)</span></td>
+                        <td><span class="pill pill-yes">YES</span></td>
+                        <td>App functionality &mdash; relayed to the other players in your
+                            match, processed ephemerally and never stored</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Financial info</td>
+                        <td><span class="pill pill-no">NO</span></td>
+                        <td>No real-money purchases exist</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td>Crash logs</td>
+                        <td><span class="pill pill-no">NO</span></td>
+                        <td>No crash-reporting service is integrated</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td>Messages, Photos, Audio, Contacts,<br />Calendar, Files, Web
+                            browsing, Health</td>
+                        <td><span class="pill pill-no">NO</span></td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="note">
+            All data we collect is <strong>encrypted in transit</strong>. Local Wi-Fi play is
+            the one exception noted in section 3: that traffic never reaches us and stays on
+            your own network.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         7. CHILDREN'S PRIVACY
          ═══════════════════════════════════════════════════════════════ -->
     <section id="children">
-        <h2>5. Children&rsquo;s Privacy</h2>
+        <h2>7. Children&rsquo;s Privacy</h2>
         <p>
-            Bit Blast: Arena is a game for all ages and has <strong>no minimum age
-            requirement</strong>. We have designed the game with this in mind: it
-            does not require account creation, does not ask for a real name or
-            contact details, and does not display behavioural advertising.
+            Bit Blast: Arena is suitable for all ages and its Google Play target audience
+            includes children. We have built it accordingly: there is no account creation,
+            no chat, no advertising, no in-app purchasing, and no request for a real name,
+            age, email, or contact details at any point.
         </p>
         <p>
-            In compliance with the U.S. Children&rsquo;s Online Privacy Protection
-            Act (COPPA) and equivalent laws (e.g. GDPR-K in the EU), we do
-            <strong>not</strong> knowingly collect personal information from any
-            player. The only data processed during gameplay is:
-        </p>
-        <ul>
-            <li>A temporary IP address, held in memory for matchmaking only and
-                discarded when the session ends</li>
-            <li>A player-chosen display name, shared with session participants only
-                and never stored</li>
-            <li>Basic device diagnostics in the event of a crash (see Log Data
-                &amp; Error Reporting)</li>
-        </ul>
-        <p>
-            Because we do not collect persistent personal information, no parental
-            consent mechanism is required for gameplay. If you are a parent or
-            guardian and have concerns about your child&rsquo;s use of the game,
-            please contact us at the address in the &ldquo;Contact
-            Information&rdquo; section and we will respond promptly.
-        </p>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         6. DATA RETENTION AND DELETION
-         ═══════════════════════════════════════════════════════════════ -->
-    <section id="retention">
-        <h2>6. Data Retention and Deletion</h2>
-        <p>
-            We retain data only as long as necessary:
+            The game does generate and transmit a <strong>persistent random
+            identifier</strong> with its analytics events, and we want to be explicit about
+            that. Under the U.S. Children&rsquo;s Online Privacy Protection Act (COPPA) a
+            persistent identifier is personal information, but collecting one is permitted
+            without parental consent when it is used solely for <em>support for the internal
+            operations of the service</em>. That is the only basis we rely on. Specifically:
         </p>
         <ul>
+            <li>The identifier is random and generated on-device. It is <strong>not</strong>
+                the Android advertising ID, and the game never reads the advertising ID.</li>
+            <li>It is used only to group a single device&rsquo;s rounds together so we can
+                measure game balance, performance, and where players get stuck.</li>
+            <li>It is <strong>never</strong> used for advertising, behavioural profiling,
+                personalisation, cross-app or cross-site tracking, audience building, or
+                contacting a player.</li>
+            <li>The only location information is the <strong>country</strong> an event arrived
+                from. COPPA treats geolocation as personal information when it is sufficient to
+                identify a street, city, or town; a country is not, and we deliberately keep
+                nothing finer &mdash; no city, no region, no postal code, no coordinates.</li>
+            <li>Nothing collected is disclosed to any third party for their own purposes.</li>
+            <li>Collection can be switched off entirely in <strong>Settings</strong>, by a
+                child or a parent, with no effect on gameplay.</li>
+        </ul>
+        <p>
+            We apply the same standard under the UK Age Appropriate Design Code and the
+            GDPR&rsquo;s protections for children. We do not knowingly collect personal
+            information from a child beyond what this policy describes.
+        </p>
+        <p>
+            <strong>Parents and guardians:</strong> if you would prefer that nothing at all
+            is collected, turn analytics off in Settings &mdash; that is the complete fix and
+            it requires no request to us. If you have questions or want data deleted, contact
+            us using section 10 and we will respond promptly.
+        </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         8. YOUR CHOICES & RIGHTS
+         ═══════════════════════════════════════════════════════════════ -->
+    <section id="choices">
+        <h2>8. Your Choices &amp; Rights</h2>
+        <ul>
             <li>
-                <strong>Session IP addresses</strong> are held in memory only for the
-                duration of an active matchmaking session and are discarded when the
-                session ends.
+                <strong>Stop collection.</strong> Settings &rarr;
+                <strong>ANALYTICS: OFF</strong>. Immediate, remembered on that device, and
+                reversible at any time.
             </li>
             <li>
-                <strong>Crash / log data</strong> is retained for up to
-                <strong>90 days</strong>, after which it is permanently purged.
+                <strong>Delete everything locally.</strong> Uninstalling the game removes the
+                random identifier, your display name, and all other saved data from your
+                device.
+            </li>
+            <li>
+                <strong>Play with nothing leaving your device.</strong> Solo practice and
+                local Wi-Fi matches with analytics off involve no communication with us at
+                all.
+            </li>
+            <li>
+                <strong>Access, correction, deletion, objection, and portability.</strong> If
+                you are in the EU/EEA, the UK, or a jurisdiction with comparable rights, you
+                may exercise them by contacting us. We do not need to verify an identity
+                because we hold none, and we will not ask you for one.
             </li>
         </ul>
         <p>
-            <strong>Requesting data deletion.</strong> If you would like to request
-            the deletion of any data that may have been associated with your device,
-            please email us at
-            <a href="mailto:lakesidetheory@gmail.com">lakesidetheory@gmail.com</a>
-            with the subject line <em>&ldquo;Data Deletion Request&rdquo;</em>.
-            Include your device type and approximate date of play so we can locate
-            any relevant records. We will process your request within 30 days.
+            <strong>Requesting deletion of analytics data.</strong> Email
+            <a href="mailto:lakesidetheory@gmail.com">lakesidetheory@gmail.com</a> with the
+            subject <em>&ldquo;Data Deletion Request&rdquo;</em>. Because we hold no account
+            and no contact details, we cannot identify your specific records from an email
+            alone. In practice the reliable way to erase your data is to turn analytics off
+            and uninstall the game, which deletes the identifier your events were grouped
+            under and leaves the remaining records unattributable. If you write to us we will
+            confirm this and action any request we are able to within <strong>30 days</strong>.
+        </p>
+        <p>
+            <strong>Legal basis (GDPR).</strong> We rely on legitimate interests for analytics
+            &mdash; improving a game we give away &mdash; balanced by making collection easy
+            to refuse and by never collecting identifying information. Multiplayer connection
+            data is processed to perform the service you asked for.
+        </p>
+        <p>
+            <strong>International transfers.</strong> Analytics data is stored on
+            PostHog&rsquo;s EU infrastructure. Our relay runs on Deno Deploy&rsquo;s global
+            edge network, which may route your session through a region near you; it stores
+            nothing anywhere.
         </p>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         7. CHANGES TO THIS POLICY
+         9. THIRD-PARTY SERVICES
          ═══════════════════════════════════════════════════════════════ -->
-    <section id="changes">
-        <h2>7. Changes to This Policy</h2>
+    <section id="third-party">
+        <h2>9. Third-Party Services</h2>
+        <p>Three third parties are involved, and only three:</p>
+        <ul>
+            <li>
+                <strong>PostHog (EU Cloud)</strong> &mdash; product analytics, as described in
+                section 2. Acts as our data processor.
+                <a href="https://posthog.com/privacy" rel="noopener noreferrer" target="_blank">Privacy policy</a>.
+            </li>
+            <li>
+                <strong>Deno Deploy</strong> &mdash; hosts our matchmaking relay, which stores
+                nothing.
+                <a href="https://deno.com/privacy-policy" rel="noopener noreferrer" target="_blank">Privacy policy</a>.
+            </li>
+            <li>
+                <strong>Google Play</strong> &mdash; distributes the game and collects data
+                independently of us under its own terms, including app installs and the crash
+                reports Android sends to Google.
+                <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Privacy policy</a>.
+            </li>
+        </ul>
         <p>
-            We may update this Privacy Policy from time to time. When we do, we will
-            revise the &ldquo;Last updated&rdquo; date at the top of this page. For
-            significant changes, we will also include a note in the game&rsquo;s
-            update release notes on the app store.
-        </p>
-        <p>
-            We encourage you to review this page periodically. Continued use of
-            Bit Blast: Arena after any changes constitutes your acceptance of the
-            revised policy.
+            There are no advertising networks, no attribution or install-tracking SDKs, no
+            social-media SDKs, and no crash-reporting SDKs in the game.
         </p>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         8. CONTACT INFORMATION
+         10. CHANGES & CONTACT
          ═══════════════════════════════════════════════════════════════ -->
     <section id="contact">
-        <h2>8. Contact Information</h2>
+        <h2>10. Changes &amp; Contact</h2>
         <p>
-            If you have any questions or concerns about this Privacy Policy or the
-            way your data is handled, please get in touch:
+            We may update this policy. When we do, the &ldquo;Last updated&rdquo; date at the
+            top changes, and for anything significant we also note it in the game&rsquo;s
+            release notes on the store. Continued play after a change means you accept the
+            revised policy.
         </p>
+        <p>Questions, concerns, or requests about privacy:</p>
         <p>
             <strong>Theodor A</strong><br />
-            Email:
             <a href="mailto:lakesidetheory@gmail.com">lakesidetheory@gmail.com</a>
         </p>
-        <p>
-            We aim to respond to all privacy-related enquiries within
-            <strong>5 business days</strong>.
-        </p>
+        <p>We aim to reply within <strong>5 business days</strong>.</p>
     </section>
 
 </main>
 
 <footer>
     <p>&copy; 2026 Theodor A &mdash; Bit Blast: Arena. All rights reserved.</p>
+    <span class="sig">GG &mdash; NOW GO BLAST SOMETHING</span>
 </footer>
 
 </body>
