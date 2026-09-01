@@ -361,7 +361,7 @@
     <h1>Privacy Policy</h1>
     <p class="header-meta">
         Developed by <strong>Theodor A</strong><br />
-        Last updated: <strong>23 August 2026</strong>
+        Last updated: <strong>1 September 2026</strong>
     </p>
     <div class="element-strip" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
@@ -475,6 +475,14 @@
                 type yourself, such as your display name or a room code, is never included.
             </li>
             <li>
+                <strong>Rating prompt.</strong> If the game offers you the Google Play rating
+                card, it records that the offer was made, together with the two numbers that
+                decided it &mdash; how many rounds you had won in total and on how many separate
+                days you had played. It records nothing about the card itself: not whether it
+                appeared, not whether you rated the game, and not what you wrote. Google does not
+                tell us, and we do not ask.
+            </li>
+            <li>
                 <strong>Performance.</strong> Median and 5th-percentile frame rate for a
                 round, and how many seconds were sampled.
             </li>
@@ -573,6 +581,9 @@
             <li>Your display name and chosen player colour</li>
             <li>Your analytics on/off preference and the random analytics identifier</li>
             <li>Your loadout, owned weapons, abilities, items, and coin balance</li>
+            <li>How many rounds you have won in total, on how many separate days you have
+                played, and when the rating card was last offered &mdash; the counters that
+                decide whether to offer it, and that stop it being offered repeatedly</li>
         </ul>
     </section>
 
@@ -600,12 +611,20 @@
             <li>Installed apps</li>
             <li>Advertising ID</li>
             <li>Health or fitness data</li>
+            <li>Your store rating or review text</li>
             <li>Crash logs or stack traces</li>
         </ul>
         <p class="note">
             The game contains no chat feature, no user-generated content, no advertising,
-            and no third-party crash-reporting service. Its only Android permission is
-            <code>INTERNET</code>.
+            and no third-party crash-reporting service. It requests two Android permissions:
+            <code>INTERNET</code>, and <code>CHANGE_WIFI_MULTICAST_STATE</code>, which lets
+            devices on the same Wi-Fi network find each other for local multiplayer.
+        </p>
+        <p class="note">
+            If you rate the game, you do so inside a card drawn by the <strong>Google Play
+            Store</strong>, not by us. Your rating and any review you write go to Google under
+            its own terms and become part of the public store listing. We never see them as
+            data &mdash; only, like anyone else, as a published review.
         </p>
     </section>
 
@@ -639,7 +658,7 @@
                     <tr>
                         <td>App activity<br /><span class="sub">App interactions</span></td>
                         <td><span class="pill pill-yes">YES</span></td>
-                        <td>Analytics &mdash; rounds, weapons, menus, in-game purchases</td>
+                        <td>Analytics &mdash; rounds, weapons, menus, in-game purchases, and that the rating card was offered</td>
                         <td>Yes</td>
                     </tr>
                     <tr>
@@ -666,6 +685,13 @@
                         <td>Financial info</td>
                         <td><span class="pill pill-no">NO</span></td>
                         <td>No real-money purchases exist</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td>In-app review content<br /><span class="sub">Rating, review text</span></td>
+                        <td><span class="pill pill-no">NO</span></td>
+                        <td>Handled entirely by the Google Play Store in its own interface;
+                            we neither receive nor request it</td>
                         <td>&mdash;</td>
                     </tr>
                     <tr>
@@ -811,14 +837,19 @@
             </li>
             <li>
                 <strong>Google Play</strong> &mdash; distributes the game and collects data
-                independently of us under its own terms, including app installs and the crash
-                reports Android sends to Google.
+                independently of us under its own terms, including app installs, the crash
+                reports Android sends to Google, and any rating or review you leave. To offer
+                the rating card the game includes Google&rsquo;s <em>Play In-App Review</em>
+                library, which does nothing but ask the Play Store to display it; it sends us
+                nothing and reports back neither whether the card appeared nor what you did
+                with it.
                 <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Privacy policy</a>.
             </li>
         </ul>
         <p>
-            There are no advertising networks, no attribution or install-tracking SDKs, no
-            social-media SDKs, and no crash-reporting SDKs in the game.
+            Apart from Google&rsquo;s Play In-App Review library described above, there are
+            no advertising networks, no attribution or install-tracking SDKs, no social-media
+            SDKs, and no crash-reporting SDKs in the game.
         </p>
     </section>
 
